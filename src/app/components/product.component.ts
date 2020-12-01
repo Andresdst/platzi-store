@@ -1,18 +1,18 @@
-import {Component} from '@angular/core'
+import {Component, Input, Output, EventEmitter} from '@angular/core'
 import { Product } from '../interfaces/product.model'
-
-
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html'
 })
 export class ProductComponent {
-product: Product = {
-      id: '1',
-  title: 'camiseta',
-  price: 800,
-  description: 'camiseta unica',
-  image: '../../assets/images/camiseta.png',
+//Los "!" La sintaxis existe para aquellos casos comunes en los que no puede garantizar que el valor se defina inmediatamente
+@Input() product!:Product;
+
+@Output() clicked:EventEmitter<any> = new EventEmitter()
+
+addCart(){
+  this.clicked.emit(this.product.id)
+  console.log('agregado')
 }
 }

@@ -7,4 +7,8 @@
 <!-- * * * * * * * to get started with your project! * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-<app-product></app-product>
+<div *ngFor="let product of products">
+
+  <app-product (clicked)="clickProduct($event)" [product]="product"></app-product>
+
+</div>
