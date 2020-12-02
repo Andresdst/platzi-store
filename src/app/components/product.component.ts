@@ -3,7 +3,8 @@ import { Product } from '../interfaces/product.model'
 
 @Component({
   selector: 'app-product',
-  templateUrl: './product.component.html'
+  templateUrl: './product.component.html',
+  styleUrls: ['./product.component.scss']
 })
 export class ProductComponent {
 //Los "!" La sintaxis existe para aquellos casos comunes en los que no puede garantizar que el valor se defina inmediatamente

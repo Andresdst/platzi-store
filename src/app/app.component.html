@@ -7,8 +7,12 @@
 <!-- * * * * * * * to get started with your project! * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-<div *ngFor="let product of products">
+<div class="product-grid">
 
-  <app-product (clicked)="clickProduct($event)" [product]="product"></app-product>
+  <app-product 
+    *ngFor="let product of products" 
+    (clicked)="clickProduct($event)"
+    [product]="product">
+  </app-product>
 
 </div>
