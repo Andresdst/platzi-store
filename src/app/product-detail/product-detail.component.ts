@@ -10,7 +10,7 @@ import { ProductsService } from '../core/services/products/products.service'
 })
 export class ProductDetailComponent implements OnInit {
 
-  product!:Product
+  product:Product | undefined
 
   constructor(
     private route:ActivatedRoute,

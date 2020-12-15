@@ -6,6 +6,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component'
 import { LayoutComponent } from './layout/layout.component';
 
+import {AdminGuard} from './admin.guard'
 
 const routes: Routes = [
   {
@@ -32,6 +33,7 @@ const routes: Routes = [
       },
       {
       path: 'contact',
+      canActivate:[AdminGuard],
       loadChildren: () => import('./contact/contact.module').then(loaded => loaded.ContactModule)
       //component: ContactComponent,
       },
