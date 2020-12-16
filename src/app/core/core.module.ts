@@ -9,7 +9,7 @@ import { ProductsService } from './services/products/products.service'
     CommonModule
   ],
   providers:[
-    ProductsService
+    ProductsService,
   ]
 })
 export class CoreModule { }
