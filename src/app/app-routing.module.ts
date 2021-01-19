@@ -38,11 +38,14 @@ const routes: Routes = [
       },
     ]
   },
-
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(loaded => loaded.AdminModule)
+  },
   {
   path:'**',
   component: NotFoundComponent
-},
+  },
 ];
 
 @NgModule({
