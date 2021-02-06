@@ -19,4 +19,8 @@ export class ProductsService {
   getProduct(id:string){
     return this.http.get<Product>(`${environment.url_api}/products/${id}`)
   }
+
+  postProduct(product:Product){
+    return this.http.post(`${environment.url_api}/products/`, product)
+  }
 }
