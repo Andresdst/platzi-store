@@ -9,5 +9,8 @@
         </ul>
         <p>{{product.description}}</p>
     </div>
-    <button (click)="createProduct()">Crear</button>
+    <button mat-button color="primary" (click)="createProduct()">Crear</button>
+    <button mat-button (click)="updateProduct()">Update</button>
+    <button mat-button color="warn" (click)="deleteProduct(product.id)">Detele</button>
+
 </div>

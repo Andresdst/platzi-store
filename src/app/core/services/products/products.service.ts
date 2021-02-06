@@ -23,4 +23,12 @@ export class ProductsService {
   postProduct(product:Product){
     return this.http.post(`${environment.url_api}/products/`, product)
   }
+
+  updateProduct(id:string,changes:Partial<Product>){ //Partial<Product> = metodo en typescript para definir parte de producto
+    return this.http.put(`${environment.url_api}/products/${id}`,changes)
+  }
+
+  deleteProduct(id:string){
+    return this.http.delete(`${environment.url_api}/products/${id}`)
+  }
 }
