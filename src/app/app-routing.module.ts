@@ -21,21 +21,25 @@ const routes: Routes = [
         //component: HomeComponent,
       },
       {
-      path: 'products',
-      loadChildren: () => import('./product/product.module').then(loaded => loaded.ProductModule)
-      //component: ProductsComponent,
+        path: 'products',
+        loadChildren: () => import('./product/product.module').then(loaded => loaded.ProductModule)
+        //component: ProductsComponent,
       },
       {
-      path: 'products/:id',
-      loadChildren: () => import('./product/product.module').then(loaded => loaded.ProductModule)
-      //component: ProductDetailComponent,
+        path: 'products/:id',
+        loadChildren: () => import('./product/product.module').then(loaded => loaded.ProductModule)
+        //component: ProductDetailComponent,
       },
       {
-      path: 'contact',
-      canActivate:[AdminGuard],
-      loadChildren: () => import('./contact/contact.module').then(loaded => loaded.ContactModule)
-      //component: ContactComponent,
+        path: 'contact',
+        canActivate:[AdminGuard],
+        loadChildren: () => import('./contact/contact.module').then(loaded => loaded.ContactModule)
+        //component: ContactComponent,
       },
+      {
+        path: 'order',
+        loadChildren: () => import('./order/order.module').then(loaded => loaded.OrderModule)
+      }
     ]
   },
   {
@@ -43,8 +47,8 @@ const routes: Routes = [
     loadChildren: () => import('./admin/admin.module').then(loaded => loaded.AdminModule)
   },
   {
-  path:'**',
-  component: NotFoundComponent
+    path:'**',
+    component: NotFoundComponent
   },
 ];
 
