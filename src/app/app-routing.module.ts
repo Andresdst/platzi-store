@@ -39,12 +39,16 @@ const routes: Routes = [
       {
         path: 'order',
         loadChildren: () => import('./order/order.module').then(loaded => loaded.OrderModule)
-      }
+      },
     ]
   },
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(loaded => loaded.AdminModule)
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(loaded => loaded.AuthModule)
   },
   {
     path:'**',
