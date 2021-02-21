@@ -4,7 +4,7 @@
 <form [formGroup]="form" (ngSubmit)="register($event)">
   <p>
     <mat-form-field>
-      <input formControlName="username" type="text" matInput placeholder="Username">
+      <input formControlName="email" type="text" matInput placeholder="email">
     </mat-form-field>
   </p>
 
@@ -15,8 +15,8 @@
   </p>
 
   <p class="error" 
-    *ngIf="(form.get('username').hasError('required') && form.dirty) || (form.get('password').hasError('required') && form.dirty)"
-  >ingrese user y password</p>
+    *ngIf="(form.get('email').hasError('required') && form.dirty) || (form.get('password').hasError('required') && form.dirty)"
+  >ingrese email y password</p>
 
   <div class="button">
     <button [disabled]="form.invalid" mat-raised-button color="primary" type="submit" mat-button>Next</button>

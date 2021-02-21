@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
   //grupo de controladores
   private buildForm(){
     this.form = this.formBuilder.group({
-      username: ['', [Validators.required]],
+      email: ['', [Validators.required,Validators.email]],
       password: ['', [Validators.required]]
     })
   }
@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
       const value = this.form.value
       console.log(value)
 
-      this.authService.createUser(value.username,value.password)
+      this.authService.createUser(value.email,value.password)
         .then(()=>{
           this.router.navigate(['./auth/login'])
 

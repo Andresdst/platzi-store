@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   //grupo de controladores
   private buildForm(){
     this.form = this.formBuilder.group({
-      username: ['', [Validators.required]],
+      email: ['', [Validators.required,Validators.email]],
       password: ['', [Validators.required]]
     })
   }
