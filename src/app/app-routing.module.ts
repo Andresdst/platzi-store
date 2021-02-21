@@ -32,7 +32,6 @@ const routes: Routes = [
       },
       {
         path: 'contact',
-        canActivate:[AdminGuard],
         loadChildren: () => import('./contact/contact.module').then(loaded => loaded.ContactModule)
         //component: ContactComponent,
       },
@@ -44,6 +43,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
+    canActivate:[AdminGuard],
     loadChildren: () => import('./admin/admin.module').then(loaded => loaded.AdminModule)
   },
   {
