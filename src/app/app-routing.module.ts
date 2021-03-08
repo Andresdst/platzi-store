@@ -32,19 +32,23 @@ const routes: Routes = [
       },
       {
         path: 'contact',
-        canActivate:[AdminGuard],
         loadChildren: () => import('./contact/contact.module').then(loaded => loaded.ContactModule)
         //component: ContactComponent,
       },
       {
         path: 'order',
         loadChildren: () => import('./order/order.module').then(loaded => loaded.OrderModule)
-      }
+      },
     ]
   },
   {
     path: 'admin',
+    canActivate:[AdminGuard],
     loadChildren: () => import('./admin/admin.module').then(loaded => loaded.AdminModule)
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(loaded => loaded.AuthModule)
   },
   {
     path:'**',
