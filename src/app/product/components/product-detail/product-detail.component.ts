@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute,Params} from '@angular/router';
 import {switchMap} from 'rxjs/operators'
+import {Observable} from 'rxjs'
 import { Product } from '@core/interfaces/product.model';
 import { ProductsService } from '@core/services/products/products.service'
 
@@ -11,7 +12,7 @@ import { ProductsService } from '@core/services/products/products.service'
 })
 export class ProductDetailComponent implements OnInit {
 
-  product!:Product //product:Product / product!:Product
+  product$:Observable<Product> //convertido a observable
 
   constructor(
     private route:ActivatedRoute,
@@ -19,23 +20,16 @@ export class ProductDetailComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.route.params
+    this.product$ = this.route.params
       .pipe(
         switchMap((params:Params) => {
           return this.productsService.getProduct(params.id)
         })
       )
-      .subscribe((product)=>{
-        this.product = product
-      })
+      // .subscribe((product)=>{
+      //   this.product = product
+      // })
   }
-
-  // fetchProduct(id:string) {
-  //   this.productsService.getProduct(id)
-  //   .subscribe(product=>{
-  //     this.product = product
-  //   })
-  // }
 
   createProduct() {
     const newProduct:Product = {
