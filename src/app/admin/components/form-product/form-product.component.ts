@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms'
+import { AngularFireStorage } from '@angular/fire/storage'
 import {Router} from '@angular/router'
+import { finalize } from 'rxjs/operators'
 import {Myvalidatos} from '../../../utils/myvalidatos'
 
 import {ProductsService} from '../../../core/services/products/products.service'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-form-product',
@@ -12,16 +15,35 @@ import {ProductsService} from '../../../core/services/products/products.service'
 })
 export class FormProductComponent implements OnInit {
 
-  form!: FormGroup  
+  form!: FormGroup
+  imageURL$: Observable<any>
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
+    private angularFireStorage:AngularFireStorage,
     private productsService:ProductsService) { 
     this.buildForm()
   }
 
   ngOnInit(): void {
+  }
+
+  uploadFile(event){
+    const file = event.target.files[0]
+    console.log(file)
+    const name = 'images' //se puede sacar el nombre del event
+    const fileRef = this.angularFireStorage.ref(name) //referencia
+    const task = this.angularFireStorage.upload(name,file) //subir archivo. tarea es un observable
+    //saber cuando finaliza. devuelve un obervable
+    task.snapshotChanges()
+      .pipe(
+        finalize(() => {
+          this.imageURL$ = fileRef.getDownloadURL()
+          this.imageURL$.subscribe(url => this.form.get('image').setValue(url))
+        })
+      )
+      .subscribe()
   }
 
   //grupo de controladores
@@ -30,7 +52,7 @@ export class FormProductComponent implements OnInit {
       id: ['', [Validators.required]],
       title: ['', [Validators.required]],
       price: [0, [Validators.required,Myvalidatos.isPriceValid]],
-      image: '',
+      image: [''],
       description: ['', [Validators.required]],
     })
   }
