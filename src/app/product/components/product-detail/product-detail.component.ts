@@ -29,6 +29,7 @@ export class ProductDetailComponent implements OnInit {
       // .subscribe((product)=>{
       //   this.product = product
       // })
+      this.getRandomUsers()
   }
 
   createProduct() {
@@ -60,5 +61,11 @@ export class ProductDetailComponent implements OnInit {
     this.productsService.deleteProduct(id)
     .subscribe(res=> console.log(res))
   }
+
+  getRandomUsers(){
+    this.productsService.getRandomUsers()
+    .subscribe(users => console.log(users))
+  }
+  
 
 }
