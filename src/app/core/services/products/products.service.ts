@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 
 import { Product } from '../../interfaces/product.model';
@@ -23,29 +23,51 @@ export class ProductsService {
 
   getAllProducts(){
     return this.http.get<Product[]>(`${environment.url_api}/products/`)
+    .pipe(
+      catchError(this.handleError),
+    )
   }
 
   getProduct(id:string){
     return this.http.get<Product>(`${environment.url_api}/products/${id}`)
+    .pipe(
+      catchError(this.handleError),
+    )
   }
 
   postProduct(product:Product){
     return this.http.post(`${environment.url_api}/products/`, product)
+    .pipe(
+      catchError(this.handleError),
+    )
   }
 
   updateProduct(id:string,changes:Partial<Product>){ //Partial<Product> = metodo en typescript para definir parte de producto
     return this.http.put(`${environment.url_api}/products/${id}`,changes)
+    .pipe(
+      catchError(this.handleError),
+    )
   }
 
   deleteProduct(id:string){
     return this.http.delete(`${environment.url_api}/products/${id}`)
+    .pipe(
+      catchError(this.handleError),
+    )
   }
 
   getRandomUsers(): Observable<User[]>{
     return this.http.get('https://randomuser.me/api/?results=2')
     .pipe(
+      //en caso de error utiliza el catchError, en caso de que sea exitoso no pasa por el catch
+      catchError(this.handleError),
       //cast limpiamos data de la resp
       map((response: any) => response.results as User[])
     );
+  }
+  //metodo para trackear errores
+  private handleError(error:HttpErrorResponse) {
+    console.log(error)
+    return throwError('ups algo salio mal')
   }
 }
