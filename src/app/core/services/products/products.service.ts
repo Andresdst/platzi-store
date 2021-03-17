@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, retry } from 'rxjs/operators';
 
 
 import { Product } from '../../interfaces/product.model';
@@ -59,6 +59,8 @@ export class ProductsService {
   getRandomUsers(): Observable<User[]>{
     return this.http.get('https://randomuser.me/api/?results=2')
     .pipe(
+
+      retry(3), //operator retry para peticiones http
       //en caso de error utiliza el catchError, en caso de que sea exitoso no pasa por el catch
       catchError(this.handleError),
       //cast limpiamos data de la resp
