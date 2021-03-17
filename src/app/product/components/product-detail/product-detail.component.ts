@@ -30,6 +30,7 @@ export class ProductDetailComponent implements OnInit {
       //   this.product = product
       // })
       this.getRandomUsers()
+      this.getFile()
   }
 
   createProduct() {
@@ -70,6 +71,13 @@ export class ProductDetailComponent implements OnInit {
     },
     error => {//en caso de hacer algo desde la infertaz
       console.error(error)
+    })
+  }
+
+  getFile(){
+    this.productsService.getFile()
+    .subscribe(content =>{
+      console.log(content)
     })
   }
   

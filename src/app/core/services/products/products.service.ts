@@ -67,6 +67,11 @@ export class ProductsService {
       map((response: any) => response.results as User[])
     );
   }
+
+  getFile(){
+    return this.http.get('assets/files/test.txt',{responseType: 'text'}) //o ruta externa
+  }
+
   //metodo para trackear errores
   private handleError(error:HttpErrorResponse) {
     console.log(error)
