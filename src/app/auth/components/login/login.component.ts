@@ -46,8 +46,12 @@ export class LoginComponent implements OnInit {
         .catch(()=>{
           alert('no es valido')
         })
-
-
     }
   }
+
+  loginAPI() {
+    this.authService.loginRestApi('andres@andres.com','123456')
+    .subscribe(data => console.log(data))
+  }
+  
 }

@@ -25,6 +25,7 @@
 
   <div class="button">
     <button [disabled]="form.invalid" mat-raised-button color="primary" type="submit">Login</button>
+    <button [disabled]="form.invalid" mat-raised-button color="primary" type="button" (click)="loginAPI()">LoginAPI</button>
   </div>
 
 </form>
